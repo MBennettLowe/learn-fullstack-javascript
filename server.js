@@ -1,8 +1,15 @@
-import https from 'https';
+import config from './config';
+import express from 'express';
 
-const server = http.createServer();
+const server = express();
 
-server.listen(8080);
+// Instead of listening to a single request event, Express also handles Server Side Routing
+// It exposes an API to listen to certain routes. '/' is the route and (req, res) is the event handler
+server.get('/', (req, res) => {
+    res.send('Hello Express');
+});
 
-server.on('request', (req,res) => {
-})
+server.listen(config.port, () => { // using the listen port from the config file
+    console.log('Express listening on port', config.port);
+
+});

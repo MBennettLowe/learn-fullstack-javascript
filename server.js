@@ -1,5 +1,6 @@
 import config from './config';
 import express from 'express';
+import fs from 'fs'; 
 
 const server = express();
 
@@ -10,11 +11,13 @@ server.get('/', (req, res) => {
 
 // Test this out using localhost:8080/about.html
 server.get('/about.html', (req, res) => {
-    res.send('The about page');
+    fs.readFile('./about.html', (err, data) => { // We can simply use the fs core Module. Inside the HTML. The API is the readfile the path to the file. 
+        res.send(data.toString()); // The callback is going to give us access to thr files data as a buffer so we can send the response as a data.toString()
+    }); // We can test this by refreshing and seeing the HTML page
 });
 
 server.listen(config.port, () => {
-    console.info('Express listening port' , config.port);
+    console.info('Express listening port', config.port);
 }); // the second part of the express listen is just the success handler which is just a function
 
 // const server = express();

@@ -1,6 +1,7 @@
 import config from './config';
 import express from 'express';
-import fs from 'fs'; 
+import router from './api';
+//import fs from 'fs'; 
 
 const server = express();
 
@@ -8,6 +9,13 @@ const server = express();
 server.get('/', (req, res) => {
     res.send('Hello Express');
 });
+
+// It's even simpler using an Express Middleware to automatically serve static assets
+//.use is how we put the middleware in the Express middleware stack. Public is where we want our static assets to be hosted on the file system. 
+// With this line we do not need to handle the route for /.about.html or even use the fs module
+server.use('/api', router); // to test this go to localhost/api to see data object
+server.use(express.static('public')); 
+
 
 // Test this out using localhost:8080/about.html
 server.get('/about.html', (req, res) => {

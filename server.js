@@ -5,9 +5,13 @@ import router from './api';
 
 const server = express();
 
+// This sets the view engine to be EJS. Express will then look for a EJS template under the Views folder
+// The EJS files are HTML files that can have JS embedded using template tags.
+server.set('view engine', 'ejs'); 
+
 // Instead of listening to a single request event, Express handles server side routing. It exposes an API to listen to certain routes.
 server.get('/', (req, res) => {
-    res.send('Hello Express');
+    res.render('index'); // rendering an EJS template
 });
 
 // It's even simpler using an Express Middleware to automatically serve static assets

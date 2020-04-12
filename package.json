@@ -19,6 +19,8 @@
   "homepage": "https://github.com/jscomplete/learn-fullstack-javascript#readme",
   "dependencies": {
     "Express": "^3.0.1",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
     "mongodb": "^3.5.5",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
@@ -39,5 +41,3 @@
     "webpack-cli": "^3.3.11"
   }
 }
-
-

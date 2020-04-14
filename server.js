@@ -11,7 +11,9 @@ server.set('view engine', 'ejs');
 
 // Instead of listening to a single request event, Express handles server side routing. It exposes an API to listen to certain routes.
 server.get('/', (req, res) => {
-    res.render('index'); // rendering an EJS template
+    res.render('index', {
+        content: 'Hello Express and <h1>EJS!</h1>' // The content variable will be added to the body of './view'. To get elements to render update EJS tag to %-
+    }); // rendering an EJS template
 });
 
 // It's even simpler using an Express Middleware to automatically serve static assets
@@ -22,12 +24,6 @@ server.use(express.static('public'));
 
 
 // Test this out using localhost:8080/about.html
-server.get('/about.html', (req, res) => {
-    fs.readFile('./about.html', (err, data) => { // We can simply use the fs core Module. Inside the HTML. The API is the readfile the path to the file. 
-        res.send(data.toString()); // The callback is going to give us access to thr files data as a buffer so we can send the response as a data.toString()
-    }); // We can test this by refreshing and seeing the HTML page
-});
-
 server.listen(config.port, () => {
     console.info('Express listening port', config.port);
 }); // the second part of the express listen is just the success handler which is just a function
